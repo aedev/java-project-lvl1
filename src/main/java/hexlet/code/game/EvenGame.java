@@ -26,13 +26,11 @@ public class EvenGame implements Game {
             String answer = scanner.next();
 
             if (number % 2 == 0 && answer.equals("yes") || number % 2 != 0 && answer.equals("no")) {
-                System.out.println("Correct!");
+                printMessageAnswerIsCorrect();
             } else {
-                System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was '" + (answer.equals("yes") ? "no" : "yes") + "'.");
-                System.out.println("Let's try again, " + name + "!");
-                System.exit(0);
+                printMessageAnswerIsWrongAndExit(answer, answer.equals("yes") ? "no" : "yes", name);
             }
         }
-        System.out.println("Congratulations, " + name + "!");
+        printCongratulationsMessage(name);
     }
 }
