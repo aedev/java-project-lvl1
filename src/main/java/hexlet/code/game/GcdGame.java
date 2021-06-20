@@ -1,41 +1,54 @@
 package hexlet.code.game;
 
-import static hexlet.code.Cli.GreetAndGetName;
+import static hexlet.code.Cli.greetAndGetName;
 
 import java.math.BigInteger;
-import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class GcdGame implements Game {
 
+    private static final int MAX_VALUE = 101;
+    private static final int NUMBER_OF_ROUNDS = 3;
+
+    /**
+     * Return game name.
+     * @return name
+     */
     @Override
     public String getName() {
         return "GCD";
     }
 
+    /**
+     * Start Game.
+     */
     @Override
-    public void run() {
-        Scanner scanner = new Scanner(System.in);
-        String name = GreetAndGetName();
+    public void start() {
+        String name = greetAndGetName();
         System.out.println("Find the greatest common divisor of given numbers.");
 
-        for (int i = 0; i < 3; i++) {
-            int number1 = (int) (Math.random() * 100);
-            int number2 = (int) (Math.random() * 100);
-            System.out.println("Question: " + number1 + " " + number2);
-            System.out.print("Your answer: ");
+        try (Scanner scanner = new Scanner(System.in)) {
 
-            int answer = scanner.nextInt();
+            Random random = new Random();
 
-            int result = calcGcd(number1, number2);
+            for (int i = 0; i < NUMBER_OF_ROUNDS; i++) {
+                int number1 = random.nextInt(MAX_VALUE);
+                int number2 = random.nextInt(MAX_VALUE);
 
-            if (result == answer) {
-                printMessageAnswerIsCorrect();
-            } else {
-                printMessageAnswerIsWrongAndExit(String.valueOf(answer), String.valueOf(result), name);
+                System.out.println("Question: " + number1 + " " + number2);
+                System.out.print("Your answer: ");
+
+                int answer = scanner.nextInt();
+                int result = calcGcd(number1, number2);
+                if (result == answer) {
+                    printMessageAnswerIsCorrect();
+                } else {
+                    printMessageAnswerIsWrongAndExit(String.valueOf(answer), String.valueOf(result), name);
+                }
             }
+            printCongratulationsMessage(name);
         }
-        printCongratulationsMessage(name);
     }
 
     private int calcGcd(int a, int b) {

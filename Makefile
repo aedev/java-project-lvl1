@@ -5,6 +5,6 @@ run-dist:
 check-updates:
 	./gradlew dependencyUpdates
 make lint:
-    ./gradlew checkstyleMain
+	./gradlew checkstyleMain
 build:
-    ./gradlew clean build
+	./gradlew clean build

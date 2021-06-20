@@ -5,8 +5,9 @@ import static hexlet.code.Cli.greetAndGetName;
 import java.util.Random;
 import java.util.Scanner;
 
-public class EvenGame implements Game {
+public class PrimeGame implements Game {
 
+    private static final int MAX_VALUE = 101;
     private static final int NUMBER_OF_ROUNDS = 3;
 
     /**
@@ -15,7 +16,7 @@ public class EvenGame implements Game {
      */
     @Override
     public String getName() {
-        return "Even";
+        return "Prime";
     }
 
     /**
@@ -24,20 +25,20 @@ public class EvenGame implements Game {
     @Override
     public void start() {
         String name = greetAndGetName();
-        System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
+        System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
 
         try (Scanner scanner = new Scanner(System.in)) {
 
             Random random = new Random();
 
             for (int i = 0; i < NUMBER_OF_ROUNDS; i++) {
-                int number = random.nextInt();
+                int number = random.nextInt(MAX_VALUE);
 
                 System.out.println("Question: " + number);
-                System.out.print("Your answer: ");
 
                 String answer = scanner.next();
-                if (number % 2 == 0 && answer.equals("yes") || number % 2 != 0 && answer.equals("no")) {
+                boolean isPrime = isPrime(number);
+                if (answer.equals("yes") && isPrime || answer.equals("no") && !isPrime) {
                     printMessageAnswerIsCorrect();
                 } else {
                     printMessageAnswerIsWrongAndExit(answer, answer.equals("yes") ? "no" : "yes", name);
@@ -45,5 +46,14 @@ public class EvenGame implements Game {
             }
             printCongratulationsMessage(name);
         }
+    }
+
+    private boolean isPrime(int number) {
+        for (int i = 2; i <= number / 2; i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
