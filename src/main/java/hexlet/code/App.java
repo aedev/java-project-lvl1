@@ -6,11 +6,12 @@ import hexlet.code.game.CalcGame;
 import hexlet.code.game.EvenGame;
 import hexlet.code.game.Game;
 import hexlet.code.game.GcdGame;
+import hexlet.code.game.ProgressionGame;
 import java.util.List;
 import java.util.Scanner;
 
 public class App {
-    private static final List<Game> gameList = List.of(new EvenGame(), new CalcGame(), new GcdGame());
+    private static final List<Game> gameList = List.of(new EvenGame(), new CalcGame(), new GcdGame(), new ProgressionGame());
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
