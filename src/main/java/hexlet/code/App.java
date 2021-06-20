@@ -5,11 +5,12 @@ import static hexlet.code.Cli.GreetAndGetName;
 import hexlet.code.game.CalcGame;
 import hexlet.code.game.EvenGame;
 import hexlet.code.game.Game;
+import hexlet.code.game.GcdGame;
 import java.util.List;
 import java.util.Scanner;
 
 public class App {
-    private static final List<Game> gameList = List.of(new EvenGame(), new CalcGame());
+    private static final List<Game> gameList = List.of(new EvenGame(), new CalcGame(), new GcdGame());
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

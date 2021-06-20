@@ -25,6 +25,7 @@ public class CalcGame implements Game {
             int number2 = (int) (Math.random() * 20);
             String operation = operations.get((int) (Math.random() * 3));
             System.out.println("Question: " + number1 + operation + number2);
+            System.out.print("Your answer: ");
 
             int answer = scanner.nextInt();
 
