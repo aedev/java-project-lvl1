@@ -1,30 +1,23 @@
-package hexlet.code.game;
+package hexlet.code.games;
 
 import static hexlet.code.Cli.greetAndGetName;
+import static hexlet.code.util.PrintMessageUtil.printCongratulationsMessage;
+import static hexlet.code.util.PrintMessageUtil.printMessageAnswerIsCorrect;
+import static hexlet.code.util.PrintMessageUtil.printMessageAnswerIsWrongAndExit;
 
 import java.math.BigInteger;
 import java.util.Random;
 import java.util.Scanner;
 
-public class GcdGame implements Game {
+public final class GcdGame {
 
     private static final int MAX_VALUE = 101;
     private static final int NUMBER_OF_ROUNDS = 3;
 
-    /**
-     * Return game name.
-     * @return name
-     */
-    @Override
-    public String getName() {
-        return "GCD";
+    private GcdGame() {
     }
 
-    /**
-     * Start Game.
-     */
-    @Override
-    public void start() {
+    public static void start() {
         String name = greetAndGetName();
         System.out.println("Find the greatest common divisor of given numbers.");
 
@@ -51,7 +44,7 @@ public class GcdGame implements Game {
         }
     }
 
-    private int calcGcd(int a, int b) {
+    private static int calcGcd(int a, int b) {
         BigInteger b1 = BigInteger.valueOf(a);
         BigInteger b2 = BigInteger.valueOf(b);
         BigInteger gcd = b1.gcd(b2);

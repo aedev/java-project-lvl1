@@ -2,40 +2,63 @@ package hexlet.code;
 
 import static hexlet.code.Cli.greetAndGetName;
 
-import hexlet.code.game.CalcGame;
-import hexlet.code.game.EvenGame;
-import hexlet.code.game.Game;
-import hexlet.code.game.GcdGame;
-import hexlet.code.game.PrimeGame;
-import hexlet.code.game.ProgressionGame;
-import java.util.List;
+import hexlet.code.games.CalcGame;
+import hexlet.code.games.EvenGame;
+import hexlet.code.games.GcdGame;
+import hexlet.code.games.PrimeGame;
+import hexlet.code.games.ProgressionGame;
 import java.util.Scanner;
 
 public class App {
-    private static final List<Game> GAME_LIST = List.of(new EvenGame(), new CalcGame(),
-        new GcdGame(), new ProgressionGame(), new PrimeGame());
+
+    private static final int EXIT_MENU_ITEM = 0;
+    private static final int GREAT_MENU_ITEM = 1;
+    private static final int EVEN_GAME_MENU_ITEM = 2;
+    private static final int CALC_GAME_MENU_ITEM = 3;
+    private static final int GCD_GAME_MENU_ITEM = 4;
+    private static final int PROGRESSION_GAME_MENU_ITEM = 5;
+    private static final int PRIME_GAME_MENU_ITEM = 6;
 
     public static void main(String[] args) {
+
+        System.out.println("Please enter the game number and press Enter.");
+        System.out.println("1 - Greet");
+        System.out.println("2 - Even");
+        System.out.println("3 - Calc");
+        System.out.println("4 - GCD");
+        System.out.println("5 - Progression");
+        System.out.println("6 - Prime");
+        System.out.println("0 - Exit");
+
+        System.out.print("Your choice: ");
+
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println("Please enter the game number and press Enter.");
-            System.out.println("1 - Greet");
-            for (int i = 0; i < GAME_LIST.size(); i++) {
-                System.out.println(i + 2 + " - " + GAME_LIST.get(i).getName());
-            }
-            System.out.println("0 - Exit");
 
             int gameNumber = scanner.nextInt();
 
-            if (gameNumber == 1) {
-                greetAndGetName();
-            } else if (gameNumber - 2 >= 0 && gameNumber - 2 < GAME_LIST.size()) {
-                GAME_LIST.get(gameNumber - 2).start();
-            } else {
-                Runtime.getRuntime().exit(0);
+            switch (gameNumber) {
+                case GREAT_MENU_ITEM:
+                    greetAndGetName();
+                    break;
+                case EVEN_GAME_MENU_ITEM:
+                    EvenGame.start();
+                    break;
+                case CALC_GAME_MENU_ITEM:
+                    CalcGame.start();
+                    break;
+                case GCD_GAME_MENU_ITEM:
+                    GcdGame.start();
+                    break;
+                case PROGRESSION_GAME_MENU_ITEM:
+                    ProgressionGame.start();
+                    break;
+                case PRIME_GAME_MENU_ITEM:
+                    PrimeGame.start();
+                    break;
+                case EXIT_MENU_ITEM:
+                default:
+                    Runtime.getRuntime().exit(0);
             }
-
-        } catch (Exception e) {
-            Runtime.getRuntime().exit(0);
         }
     }
 }

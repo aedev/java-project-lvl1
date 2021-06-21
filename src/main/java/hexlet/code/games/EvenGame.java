@@ -1,28 +1,21 @@
-package hexlet.code.game;
+package hexlet.code.games;
 
 import static hexlet.code.Cli.greetAndGetName;
+import static hexlet.code.util.PrintMessageUtil.printCongratulationsMessage;
+import static hexlet.code.util.PrintMessageUtil.printMessageAnswerIsCorrect;
+import static hexlet.code.util.PrintMessageUtil.printMessageAnswerIsWrongAndExit;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class EvenGame implements Game {
+public final class EvenGame {
 
     private static final int NUMBER_OF_ROUNDS = 3;
 
-    /**
-     * Return game name.
-     * @return name
-     */
-    @Override
-    public String getName() {
-        return "Even";
+    private EvenGame() {
     }
 
-    /**
-     * Start Game.
-     */
-    @Override
-    public void start() {
+    public static void start() {
         String name = greetAndGetName();
         System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
 
